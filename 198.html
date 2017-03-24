@@ -1,0 +1,362 @@
+<FONT face="Arial,Helvetica,Univers,Zurich BT" size=-1>
+<h2>Errata</h2>
+
+<p>
+One of the intriguing (and quite frustrating) things about writing on an emerging technology is attempting to manage the massive state of flux.  At the time of printing, the code for this text was proofed against a prerelease build of Beta 2.  
+</p>
+
+<p>
+As luck would have it, the official build released at Microsoft Tech Ed (June 2001) did include some last minute changes to the base class libraries.  A very small chunk of this text was directly affected by the changed to the .NET class libraries.  In addition, I did find a few erroneous explanations and formatting issues that squeaked into the final manuscript.  To resolve each of these issues, the following Errata documents changes for each chapter using the following designations:
+<ul>
+<li><b>Code</b>: Anything listed under this section indicates changes that will require code modifications. This also includes corrections to a given topic explanation.  
+<li><b>Cosmetic</b>: These changes are just annoying little typos, spelling errors and formatting glitches.  You can ignore listing in this category if you so choose (but I thought I'd list them anyway).
+</ul>
+</p>
+
+<p>
+Although I am doing my very best to find any remaining errors, you may encounter additional glitches which have escaped my eyes.  If you do find an additional error, feel free to contact me directly. As well, if you wish to drop a line and suggest additional topics for the second edition or chat about the book (or .NET in general) please do! I welcome your input.  Finally, I do hope you are enjoying the text.
+</p>
+
+<p>
+Take care,<br>
+Andrew Troelsen<br>
+(<a href="mailto:atroelsen@intertech-inc.com">atroelsen@intertech-inc.com</a>)
+<br><br>
+Java Jacks Coffee House, Minneapolis, MN<br>
+(Third cup of coffee)
+</p>
+
+<h3>Chapter 1</h3>
+<p>
+<b>Code:</b><br>
+Page 33:  The URL of the ClassViewer web application has changed in Beta 2.  Update the URL in the “ClassViewer Web Application” section to specify “http://localhost/quickstart/aspplus/samples/classbrowser/vb/classbrowser.aspx”
+</p>
+<p>
+Page 35:  “Building C# Apps using the Command Line Complier".  FYI.  In Beta 2, the environment variables (which allow you to build at the command line from any directory) do not appear to register correctly.  Fixing this is trivial:
+<ol>
+<li>Right click on the My Computer icon from your desktop and select Properties
+<li>Pick the 'Advanced' tab and click the "Environment Variables" button.
+<li>Double click on the 'Path' variable from the 'System Variables' list box.
+<li>Add the following at the end of the current value (each value is separated by semi-colons): C:\WINNT\Microsoft.NET\Framework\v1.0.2914.  This path may need to be adjusted based on where you installed .NET.
+<li>Once you have done so, you will now be able to run csc.exe from the command window.
+</ol>
+Be aware that this same approach may need to be taken to configure other command line tools used in the book (tlbimp, tlbexp, etc).  If you don't have this problem, ignore!  
+</p>
+<p>
+Page 48: "Support for UML Diagrams".  This functionality has been removed from the general release of VS.NET Beta 2 (and placed into the Enterprise Edition).  Thus, disregard this section (and figure 1-30) unless you have a copy of VS.NET EE.
+</p>
+<p>
+<b>Cosmetic: </b><br>
+
+Page 6: Third full paragraph.  I state "...only use CLS-compliant features...", but this would be better said "...only expose CLS-compliant features..."
+</p>
+<p>
+Page 13:  Last word on the page says 'accuracy' but should say 'accurately' (no pun intended!).
+</p>
+<p>
+Page 20: Last paragraph on the page.  I state "... a .NET delegate is a class...", but this would be better stated "...a .NET delegate represents a class...".
+</p>
+<p>
+Page 23: First sentence in the section "Working with Namespaces".  Run time should be one word (runtime).  
+</p>
+<p>
+Page 25:  Table 1-3.  Third row, second column.  The word 'database' flowed over into the first column.  In fact, this should be part of the second column ("These namespaces are (of course) used for database manipulations..."
+</p>
+<p>
+Page 44: Second to the last sentence on page.  "...Assembly node..." should read "...References node..."
+</p>
+
+
+<h3>Chapter 2</h3>
+
+<b>Code:</b>
+
+<p>Page 70:  The final source code comment on the page says "This performs a shallow copy...", which can be better described by simply saying "This results in two references to the same object in memory".</p>
+
+<p>Page 72: My description of MemberwiseClone() is nebulous.  The description is better stated as:  "This protected method exists to return a member by member copy of the object.  Reference fields are also copied from the old object to the new, but this means that the reference fields in the new object point to the same objects as those in the old object. This is the definition of a "shallow copy".</p>
+
+<p>Page 107:  At the top of the page (first full sentence), the function ArrayOfInts() should be called DisplayArrayOfInts().</p>
+
+<p>Page 122:  FYI: Do note that if you do not require any exotic formatting options, Enum.ToString() will also return the string value of a given enumeration variable. The static Format() method provides for additional formatting features.</p>
+
+
+<p><b>Cosmetic:</b><br>
+
+Page 65:  The fourth Console.WriteLine() call should really say "F3 format:" rather than "F format".  This will not break your code, but F3 better reflects the formatting operation.</p>
+
+<p>Page 87:  Remove the ( ) from C(++) in the section Defining Program Constants.  C proper does not have a const keyword!</p>
+
+<p>Page 105:  The word 'out' in the comment in the middle of the page has overflowed into the next line.  Adjust accordingly...</p>
+
+<p>Page 118:  First code block on the top of the page.  The word 'strFixed' has overflowed onto the next line.  This should be part of the code comment.  Adjust accordingly...</p>
+
+<h3>Chapter 3</h3>
+
+<p><b>Code:</b>
+
+Page 197:  The following code was omitted from the Car class:
+<br><br>
+<pre>
+public class Car : IDisposable 
+{
+	private bool isDisposed = false;	// ADD!
+
+	~Car()
+	{
+		if(!isDisposed)			// ADD!
+			Dispose();
+	}
+...
+}
+</pre></p>
+
+<p>Between beta 1 and beta 2, numerous aspects of the disposable pattern have changed.  Check out MSDN for other disposable patterns (look up the topic 'Implementing a Dispose() method').</p>
+
+<p>
+<b>Cosmetic:</b><br>
+
+Page 141:  The first code block has a comment that has flowed over two lines.  'database...' should be part of this comment.</p>
+
+<p>Page 144:  In the first line under figure 3-6, Chexagon should say CHexagon.</p>  
+
+<p>Page 174: First paragraph.  FYI, it is technically possible for a C# abstract (or C++ pure virtual) function to contain implementation code.</p>  
+
+<p>Page 194: Last paragraph, first sentence says 'recourse' but should say 'resources'.</p>
+
+<h3>Chapter 4</h3>
+
+<p><b>Code:</b>
+<br>
+Page 222:  In the first full paragraph, I state that MemberwiseClone() is called internally when you apply the assignment operator between two reference types.  This is NOT the case.  The second sentence is more accurately described as: "Object users do not call this method directly (as it is protected), however a given object (or derived type) may call this method itself during the 'cloning' process."</p>
+ 
+<p>Page 222:  The parenthetical remark '(i.e., a shallow copy)' should be removed.</p>
+ 
+<p>Page 223:  Give the retrofitting of the listing above (page 422) you could also implement Clone() as so:
+<br><br>
+// The sole method of ICloneable.
+public object Clone()
+{
+	// Return a member by member copy of
+	// this object.  Be aware!  If Point contained
+	// any internal object references, these 
+	// would also be copied verbatim!  
+	return this.MemberwiseClone();
+}
+</p>
+<p>Be aware however, that if the Point type did contain references to other internal reference types, MemberwiseClone() will copy the references as well!  In this case, if you wish to support a true deep copy, you will need to create new instances of the internal objects and assign them to the Point's respective member variable(s).</p> 
+
+<p><b>Cosmetic:</b>
+<br>
+None. </p>
+
+<h3>Chapter 5</h3>
+
+<p><b>Code:</b>
+
+Page 260:  First block of code was formatted incorrectly.  Change to say: public void ProcessCars(Car.CarDelegate proc) not: public void ProcessCarsCar.(CarDelegate proc)</p>
+
+<p><b>Cosmetic:</b>
+
+Page 246: Second full paragraph, last sentence reads !+ but should say !=.</p>
+
+
+<h3>Chapter 6</h3>
+
+<p><b>Code:</b>
+<br>
+Page 309:  Last sentence, top of the page.  Do be aware, that if the assembly contains a public key token, the GAC is search first.</p>
+
+<p>Page 315: First paragraph on page, last sentence.  Should say public key, not private key.</p>
+
+<p>Page 315: Second paragraph, last complete sentence.  This reads better as so: "The .NET runtime then uses common public key cryptographic techniques to ensure the correct assembly has been loaded."</p>
+
+<p>Page 315: Figure 6-23.  Change the text in the bottom right box to simply say "The public and private keys are now used to facilitate the signing of the assembly."</p>
+
+<p>Page 315: First sentence under 'Building a Shared Assembly'.  Change "To generate a strong name...": to "To generate a public / private key pair..." </p>
+
+<p>Page 320:  First sentence.  Change 'shared' to 'private' ("...when you reference a private...")</p>
+
+<p>Page 321: Figure 6-31.  Under beta 2, the build and revision numbers have been flipped.  Thus, this diagram should read Major.Minor.Build.Revision</p>
+
+<p>
+<b>Cosmetic:</b>
+<br>
+Page 286: Fourth full paragraph.  Change "...to a traditional..." to simply "...to traditional..."</p>
+
+<p>Page 288: Figure 6-2.  Left hand side of diagram should have a horizontal line separating " Type Metadata" and "MSIL Code".</p>
+
+<p>Page 300: The MessageBox.Show() line is not indented correctly.</p>
+
+<p>Page 312: Point 1.  "As you will see..." should be "As you have seen..."</p>
+
+
+<h3>Chapter 7</h3>
+
+<p>
+<b>Code:</b>
+<br>
+Page 358:  In beta 2, the build and revision numerical designations have been switched.  Thus, first code block should read Major.Minor.Build.Revision.</p>
+
+<p>Page 364:  The upper limit in the for loop should the variable shameIntensity, not numb.</p>
+
+<p>Page 372: The variable 'a' is of type Assembly.  (Assembly a = Assmebly.Load(“MyAssembly”) )</p>
+
+<p>
+<b>Cosmetic:</b>
+<br>
+Page 359: first comment is ill formed.  Change to say:</p> <br>
+<pre>
+// List all types in the assembly.
+</pre>
+
+<p>Page 359: Third sentence, last paragraph on page.  Should be 'defines' not 'defined'. </p>
+
+<p>Page 367: First paragraph, second to last sentence.  Change to "...saving the type to disk".</p>
+
+<p>Page 368:  Comment in middle of page says "Now created..." but should say "Now create..."</p>
+
+<p>Page 379: Remove extra comma from the last member of the AttributeTargets enum.</p>
+
+<h3>Chapter 8</h3>
+
+<p><b>Code:</b>
+
+None.</p>
+
+<p><b>Cosmetic:</b>
+
+Page 386: Under the Overview of Windows Forms section, remove 'the' before 'table 8-1'.</p>
+
+<p>Page 386: Under the Interacting with the Windows Forms Types section, I make mention of the WinDes.exe utility (including figure 8-1).  This tool seems to have been removed from the final release of Beta 2.  Thus, don't pull all our hair out when you are unable to find it ;-)</p>
+
+<p>Page 389: First paragraph, second sentence.  Change "...application is also needed..." to "...application also needs...".</p>
+
+<p>Page 402:  First sentence, first full paragraph.  Change "...within the application." to "...within the Form."</p>
+
+<p>Page 406:  Remove comma after final member of the ControlStyles enum.</p>
+
+<p>Page 418: Table 8-11 should say "Additional Control Members" not Methods (given that there are also properties listed).</p>
+
+<h3>Chapter 9</h3>
+
+<p><b>Code:</b>
+<BR>
+Page 504:  Code block.  Remove 'pen2.Width = 5' from the code.  In beta 2, pens returned from the Pens type do not support a mutating the Width property. </p>
+
+<p><b>Cosmetic:</b>
+<BR>
+Page 483: First full paragraph. add closing " after (100, 100).</p>
+
+
+
+<h3>Chapter 10</h3>
+
+<p><b>Code:</b>
+<BR>
+Page 592: The second parameter of the Validating event handler has changed in beta 2 to CancelEventArgs, not EventArgs.</p>
+
+<p><b>Cosmetic:</b>
+<BR>
+Page 548: Table 10-1 lists methods, not properties.  Update accordingly. </p>
+
+<h3>Chapter 11</h3>
+
+<p><b>Code:</b>
+<BR>
+Page 649:  The CustomCarType class needs to have the [Serializable] attribute applied at the class level.</p>
+
+<p><b>Cosmetic:</b>
+<BR>
+Page 605:  Final sentence of first paragraph should say "...read from and write to..." not vice versa.</p>
+
+<p>Page 609:  Table 11-3: Should be titled DirectoryInfo members (not Directory).</p>
+
+<p>Page 615: Caption of figure 11-6 is ill formed.  Should say "...of the Directory type".</p>
+
+<p>Page 625: First code comment on page as an extra tick mark.  Remove.</p>
+
+<p>Page 626: Caption of table 11-11 is wrong.  Should say "Core Member of TextWriter"</p>
+
+<p>Page 644: First comment in code block lost the // during formatting.  Add.</p>
+
+ 
+
+
+
+
+<h3>Chapter 12</h3>
+
+<p><b>Code:</b>
+<BR>
+Page 735:  In the final release of beta 2, you are unable to directly implement IObjectConstruct. Rather, simply override the Construct() method.  Note that you do not have to obtain the IObjectConstructString interface anymore (you are passed in a string).</p>
+
+<p><pre>
+public override void Construct(string msg)
+{
+	MessageBox.Show(msg, "Ctor string is");			
+}
+</pre></p>
+
+<p>
+<b>Cosmetic:</b>
+<BR>
+Page 662:  Second paragraph, second to last sentence.  This was formatted incorrectly.  Should say "Furthermore, the chances are slim that you will never need to..."</p>
+
+<p>Page 667: Code comment on bottom of page has a unneeded tick mark.  Remove.</p>
+
+<p>Page 685.  Final paragraph under "Building an ATL Test Server", first sentence.  This got goofed up when I was changing this sample.  Dual IS the default option.</p>  
+
+<p>Page 691:  The GUID in this interface definition somehow got the characters 'GetCyl' mixed in.  This should be a standard old GUID.</p>
+
+<p>Page 771:  Final code comment on the bottom of the page was a copy error from a different example.  There is NO unboxing happening here...</p>
+
+<p>Page 714: The VB code, second line is commented.  Uncomment.</p>     
+
+
+<h3>Chapter 13</h3>
+
+<p>
+<b>Code:</b>
+<BR>
+Page 783.  FYI, the XML format changed a bit with the final release of beta 2.  Before you run this program, delete the *.xml file from the app directory of this example (or you'll blow up!).</p>
+
+<p>Page 795:  Code block on bottom of page.  Change 'DbType' to OleDbType (this same change needs to be made on page 796).</p>
+
+<p>Page 796:  Table 13-17.  The DataType property has been removed in beta 2.  Also, change DbType to OleDbType in the same table.</p>
+
+
+<b>Cosmetic:</b>
+<BR>
+<p>Page 755:  The // Trigger... comment has an unnecessary tick mark.  Remove.  Also, on the next line, the code was formatted incorrectly.  Change to 
+Console.WriteLine(myRow.RowState.ToString());</p>
+
+<p>Page 777: Paragraph in middle of page says 'same code' but should say 'source code'.
+Same paragraph, DataTables should be singular.  </p>
+
+<h3>Chapter 14</h3>
+
+<p><b>Code:</b>
+<BR>
+None.</p>
+
+<p><b>Cosmetic:</b>
+<BR>
+None. </p>
+
+<h3>Chapter 15</h3>
+
+<p><b>Code:</b>
+<BR>
+None.</p>
+
+<p><b>Cosmetic:</b>
+<BR>
+FYI:  *.disco file extension has changed to *.vsdisco.  When you see *.disco in the text, think "vsdisco". </p>
+
+
+
+
+</BODY>
+
+</HTML>
+
